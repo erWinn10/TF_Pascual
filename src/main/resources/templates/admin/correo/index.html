@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head th:replace="admin/index :: fCabecera"></head>
+    <body class="sb-nav-fixed ">
+        <nav th:replace="admin/index :: fBarra"></nav>
+        <div id="layoutSidenav">
+            <div th:replace="admin/index :: fMenu"></div>
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container mt-4 pt-5">
+                        <div class="card qik">
+                            <div class="card-header fs-20px">
+                                <i class="fa-solid fa-table "></i> 
+                                Correos de clientes suscritos
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover">
+                                        <thead >
+                                            <tr class="fs-18px">
+                                                <th scope="col">ID</th>
+                                                <th scope="col">Correo</th>
+                                                <th scope="col">Fecha de suscripción</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr th:each = "cliente : ${listaCorreos}" class="mi-celda">
+                                                <td th:text="${cliente.id}"></td>
+                                                <td th:text="${cliente.direccion}"></td>
+                                                <td th:text="${cliente.fecha_registro}"></td>
+                                                <!--CRUD
+                                                <td class="text-center">
+                                                    <a class="btn btn-primary botonEditar"
+                                                        th:data-id="${admin.id}"
+                                                        th:data-usuario ="${admin.usuario}">
+                                                        <i class="fa-solid fa-newspaper"></i> 
+                                                        Editar
+                                                    </a>
+                                                </td>
+                                                -->
+                                                <td class="text-center">
+                                                    <a class="btn btn-dark rojobb" th:href="@{/correo/eliminar/} + ${cliente.id}" onclick="return confirm('¿Desea eliminar la cactegoria?')">   
+                                                        <i class="fa-solid fa-delete-left"></i> 
+                                                        <strong>Eliminar</strong>
+                                                    </a>
+                                                </td>
+                                                
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+                <footer th:replace="admin/index :: fFooter"></footer>
+            </div>
+        </div>
+        <div th:replace="admin/index :: fLibrerias"></div>
+        <script th:src="@{/js/libreriaCorreo.js}"></script>
+    </body>
+</html>

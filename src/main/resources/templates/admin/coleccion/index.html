@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head th:replace="admin/index :: fCabecera"></head>
+    <body class="sb-nav-fixed ">
+        <nav th:replace="admin/index :: fBarra"></nav>
+        <div id="layoutSidenav">
+            <div th:replace="admin/index :: fMenu"></div>
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container mt-4 pt-5">
+                        <div class="card qik">
+                            <div class="card-header fs-20px">
+                                <i class="fa-solid fa-table"></i> 
+                                Correos de clientes suscritos
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover">
+                                        <thead>
+                                            <tr class="fs-18px">
+                                                <th scope="col">ID</th>
+                                                <th scope="col">Coleccion</th>
+                                                <th scope="col">Descripción</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr th:each = "lcoleccion : ${listaColeccion}">
+                                                <td th:text="${lcoleccion.id}"></td>
+                                                <td th:text="${lcoleccion.nombre}"></td>
+                                                <td th:text="${lcoleccion.descripcion}"></td>
+                                                
+                                                <td class="text-center">
+                                                    <a class="btn btn-light botonEditar celestebb"
+                                                        th:data-id="${lcoleccion.id}"
+                                                        th:data-nombre ="${lcoleccion.nombre}"
+                                                        th:data-descripcion="${lcoleccion.descripcion}">
+                                                        <i class="fa-solid fa-newspaper "></i> 
+                                                        Editar
+                                                    </a>
+                                                </td>
+                                                
+                                                <td class="text-center">
+                                                    <a class="btn btn-dark rojobb" th:href="@{/coleccion/eliminar/} + ${lcoleccion.id}" onclick="return confirm('¿Desea eliminar la colección?')">   
+                                                        <i class="fa-solid fa-delete-left"></i> 
+                                                        Eliminar
+                                                    </a>
+                                                </td>
+                                                
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <form class="mb-4 mt-5" th:action="@{/coleccion/guardar}" th:object="${coleccion}" method="post">
+                            <div class="card qik">
+                                <div class="card-header fs-20px">
+                                    <i class="fa-solid fa-floppy-disk"></i>
+                                    Registrar Colección:
+                                </div>
+                                <div class="card-body fs-18px">
+                                    <div class="row mt-2">
+                                        <div class="col-md-6 mb-2 ">
+                                            <label>Nombre de la colección:</label>
+                                            <input th:field="*{nombre}" type="text" class="form-control" required/>
+                                        </div>
+                                        <div class="col-md-6 mb-2">
+                                            <label>Descripción de la colección:</label>
+                                            <input th:field="*{descripcion}" type="text" class="form-control" required/>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">  
+                                        <div class="col-12 text-center mt-4">
+                                            <button type="submit" class="btn btn-light p-2  verdebb">
+                                                
+                                                <div class="p-1"><i class="fa-solid fa-floppy-disk"></i> <strong>Guardar Colección</strong></div>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </main>
+                <footer th:replace="admin/index :: fFooter"></footer>
+            </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="editarModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Coleccion</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form th:action = "@{/coleccion/guardar}" th:object="${coleccion}" method="post">
+                        <div class="modal-body">
+                            <input type="hidden" name='id' id="id">
+                            <div class="row">
+                                <div class="text-center">
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label>Nombre:</label>
+                                    <input type="text" name="nombre" id="txtNombre" class="form-control" placeholder="Ingresar el nombre" readonly>
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label>Descripción:</label>
+                                    <input type="text" name="descripcion" id="txtDescripcion" class="form-control" placeholder="Ingresar la descripcion">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                <i class="fa-solid fa-ban"></i> Cancelar
+                            </button>
+                            <button type="submit" class="btn celestebb">
+                                <i class="fa-solid fa-floppy-disk"></i> Guardar Campos
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div th:replace="admin/index :: fLibrerias"></div>
+        <script th:src="@{/js/libreriaColeccion.js}"></script>
+    </body>
+</html>

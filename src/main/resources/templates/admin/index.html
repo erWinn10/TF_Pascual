@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head th:fragment="fCabecera">
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <link rel="icon" th:href="@{/images/logo2.ico}">
+        <title>CocoboloCobaby - Admin</title>
+        <link th:href="@{/css/stylesb.css}" rel="stylesheet" />
+        <link th:href="@{/css/styles.css}" rel="stylesheet" />
+        <link th:href="@{/css/colores.css}" rel="stylesheet" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+    </head>
+    <body class="sb-nav-fixed">
+        <nav class="barradmin sb-topnav navbar navbar-expand navbar-light  " th:fragment="fBarra">
+            <!-- Navbar Brand-->
+            <a class="navbar-brand ps-1 " th:href="@{/admin/}"><img th:src="@{/images/coco10.png}" height="85" width="190"></a>
+            <!-- Sidebar Toggle-->
+            <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars fs-25px" style="color: #ffffff;"></i></button>
+            <!-- Navbar Search-->
+            <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0"></form>
+            <!-- Navbar-->
+            <span class="text-white  mx-3">
+                <span sec:authentication="name"></span>
+                <span sec:authentication="principal.authorities"></span>
+            </span>
+                <form class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4" th:action="@{/logout}" method="post">
+                    <button class="btn btn-light" type="submit">
+                        Cerrar Sesión
+                    </button>
+                </form>
+            
+        </nav>
+        <div id="layoutSidenav">
+            <div id="layoutSidenav_nav" th:fragment="fMenu">
+                <nav class=" sb-sidenav accordion sb-sidenav-light" id="sidenavAccordion">
+                    <div class="sb-sidenav-menu pt-4 ps-1">
+                        <div class="nav">
+                            <div class="sb-sidenav-menu-heading">Menú Principal</div>
+                            <a class="nav-link opMenu " id="mColeccion" th:href="@{/coleccion/}">
+                                <div class="sb-nav-link-icon "><i class="fas fa-chart-area"></i></div>
+                                <strong class="txtgrizzos">Colecciones</strong>
+                            </a>
+                            <a class="nav-link opMenu" id="mArticulo" th:href="@{/articulo/}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                <strong class="txtgrizzos">Articulos</strong>
+                            </a>
+                            
+                            <a class="nav-link opMenu " id="mAdministrador" >
+                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                <strong class="txtgrizzos desactivado">Administradores</strong>
+                            </a>
+                            <a class="nav-link opMenu" id="mPedidos" th:href="@{/pedido/}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                <strong class="txtgrizzos">Pedidos</strong>
+                            </a>
+                            <a class="nav-link opMenu" id="mCorreo" th:href="@{/correo/}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                <strong class="txtgrizzos">Correos</strong>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="sb-sidenav-footer">
+                        <div class="small">Empresa:</div>
+                        Cocobolo & Cocobaby®
+                    </div>
+                </nav>
+            </div>
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid px-4">
+                        <!--CONTENIDO DE LA PÁGINA PRINCIPAL (MAIN)
+                        <p class="mt-5 fs-25px" style="color: rgb(36, 36, 36);";><b>Bienvenido al DASHBOARD de Cocobolo & Cocobaby®</b></p>
+                        -->
+                        <img th:src="@{/images/portadadmin.jpg}" class="mt-3 pt-1" width="1000">
+                        <a class="mt-5 d-flex justify-content-end" th:href="@{/inicio/}" style="color: cadetblue;">Regresar a la página principal</a>
+                    </div>
+                </main>
+                <footer class="py-4 grizzmedio mt-auto" th:fragment="fFooter">
+                    <div class="container-fluid px-4">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div class="text-muted">Copyright &copy; Cocobolo & Cocobaby® 2023</div>
+                            <!--
+                            <div>
+                                <a href="#">Erwin Pascual</a>
+                                &middot;
+                                <a href="#">Terms &amp; Conditions</a>
+                            </div>-->
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+        <div th:fragment="fLibrerias">
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+            <script th:src="@{/js/scripts.js}"></script>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,248 @@
+.barra{
+    background-color: rgb(244, 177, 131);
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    padding: 8px;
+    font-weight: 700;
+    margin: 0;
+    color: white;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+.barra2{
+    background-size: 25px;
+    font-size: 25px;
+    border-radius: 5px;
+    background-repeat: no-repeat;
+    border-color: transparent;
+    width: 500px !important;
+    outline: none;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+}
+.barrabaja{
+    font-family: Arial, Helvetica, sans-serif;
+    height: 100%;
+}
+
+
+.barrabaja li{
+    background-color: rgb(243, 243, 243); 
+}
+.nav-link {
+    transition: color 0.5s;
+}
+  
+.barrabaja li a{
+    color: rgb(114, 108, 108) !important;
+    font-size: 24px;
+}
+
+.barrabaja li a:hover{
+    color: rgb(244, 177, 131) !important;
+    transform: scale(1.05);
+}
+
+.barrabaja li a:focus{
+    color: rgb(157, 195, 230) !important;
+}
+
+.barrabaja li a:active{
+    color:  rgb(114, 108, 108) !important;
+}
+
+.altoImagen{
+    height: 480px;
+}
+.altoImagen2{
+    height: 500px;
+}
+.articulos{
+    height: 500px !important;
+    width: 320px !important;
+}
+.articulos2{
+    height: 400px !important;
+    width: 400px !important;
+}
+.mochi{
+    margin-left: 5px !important;
+    
+    border-bottom: 5px solid rgb(140, 192, 234);
+}
+
+.letras{
+    color: rgb(114, 108, 108) !important;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bold;
+    font-size: 30px;
+    margin:-15px;
+    padding-top: 5px;
+}
+.josefin{
+    font-family: "Josefin Sans";
+}
+
+.text-cart{
+    outline: none !important;
+    border: 0 !important;
+    background-color: rgb(243, 243, 243) !important;
+    margin: 4rem;
+}
+
+.nosub {
+    text-decoration: none !important;
+}
+
+.separa{
+    padding-left: 25px;
+    display: flex;
+    margin: 15px;
+    letter-spacing: 25px;
+}
+
+.celestebb{
+    background-color: #b1d2ef !important;
+    
+}
+.rosadobb{
+    background-color: #ffcbdb !important;
+    
+}
+
+.disabled:hover{
+    color: red !important;
+}
+.letrassubs{
+    padding-left: 45px !important;
+}
+
+.iniciosub{
+    font-family: 'Bricolage Grotesque', sans-serif !important;
+    padding: 10px;
+    margin-bottom: 0;
+    margin-top: 50px;
+    font-weight: bold;
+    color: rgb(160, 160, 160); 
+    margin-left: 15px;
+    font-size: 25px;
+}
+.iniciosub2{
+    font-family: 'Bricolage Grotesque', sans-serif !important;
+    padding: 10px;
+    font-weight: bold;
+    color: rgb(180, 180, 180); 
+    margin-left: 15px;
+    font-size: 20px;
+}
+
+
+
+.barradmin{
+    height: 82px;
+    background-color: #5f5f5f;
+}
+
+.fs-50px{
+    font-size: 50px;
+}
+.fs-25px{
+    font-size: 25px;
+}
+.grizzbb{
+    background-color: rgba(252, 252, 252, 0.897);
+}
+.celestebb2{
+    background-color: #d9e5f3!important;
+    
+}
+.padding25{
+    padding-left: 25px;
+}
+.padding65{
+    padding-left: 65px;
+}
+
+.padding45{
+    padding-left: 45px;
+}
+
+.padding20{
+    padding-left: 20px;
+}
+.fs-35px{
+    font-size: 35px !important;
+}
+.fs-30px{
+    font-size: 30px !important;
+}
+.coral{
+    color: rgb(244, 177, 131) !important; 
+}
+.mr-10px{
+    margin-right: 10px !important;
+}
+
+.mt-15px{
+    margin-top: 13rem !important; 
+}
+
+.barramovil{
+    background-color: rgb(255, 255, 255);
+}
+
+.sticky{
+    position: sticky !important;
+    top: 0 !important;
+    padding: 0 !important;
+    z-index: 1000 !important;
+}
+
+.qik{
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+}
+
+.fs-20px{
+    font-size: 20px;
+}
+
+.fs-18px{
+    font-size: 18px;
+}
+
+.qik600{
+    font-family: 'Quicksand', sans-serif;
+}
+
+.activado{
+    color: rgb(121, 187, 77) !important;
+    
+}
+
+.verdebb{
+    background-color: rgb(169, 209, 142) !important;
+}
+
+.rojobb{
+    background-color: #ff6961 !important;
+    border-color: white !important;
+}
+
+.roboto{
+    font-family: 'Roboto' !important;
+}
+
+.img-circular {
+    border-radius: 50%;
+}
+
+.grizzoscuro{
+    background-color: #646464 !important;
+    
+}
+
+.grizzmedio{
+    background-color: #d9d9d9 !important;
+}

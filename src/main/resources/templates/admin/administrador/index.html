@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head th:replace="admin/index :: fCabecera">
+    </head>
+    <body class="sb-nav-fixed ">
+        <nav th:replace="admin/index :: fBarra"></nav>
+        <div id="layoutSidenav">
+            <div th:replace="admin/index :: fMenu"></div>
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container mt-4 pt-5">
+                        <!--CONTENIDO DE LA PÁGINA PRINCIPAL (MAIN)-->
+
+                        <form class="mb-4" th:action="@{/administrador/guardar}" th:object="${admin}" method="post">
+                            <div class="card qik">
+                                <div class="card-header fs-20px">
+                                    <i class="fa-solid fa-floppy-disk"></i>
+                                    Registrar nuevo administrador:
+                                </div>
+                                <div class="card-body">
+                                    <div class="row mt-2 fs-18px">
+                                        <div class="col-md-6 mb-2">
+                                            <label>Usuario del administrador:</label>
+                                            <input th:field="*{usuario}" type="text" class="form-control" required/>
+                                        </div>
+                                        <div class="col-md-6 mb-2">
+                                            <label>Contraseña del administrador:</label>
+                                            <input th:field="*{contraseña}" type="password" class="form-control" required/>
+                                        </div>
+                                        <div class="col-md-6 mb-2">
+                                            <label>Activado o no:</label>
+                                            <input th:field="*{enabled}" type="number" class="form-control" required/>
+                                        </div>
+                                        <div class="row mt-2">
+                                            <div class="mb-2">
+                                                <label>Ruta de la foto del administrador:</label>
+                                                <input th:field="*{foto}" type="file" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 text-center mt-4">
+                                            <button type="submit" class="btn verdebb p-2 btn-light">
+                                                <div class="p-1"><i class="fa-solid fa-floppy-disk"></i> <strong>Registrar administrador</strong></div>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        
+                        <!--TABLA-->
+                        <br>
+                        <div class="card qik">
+                            <div class="card-header fs-20px">
+                                <i class="fa-solid fa-table"></i> 
+                                Categorías Registradas
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover justify-content-center">
+                                        <thead>
+                                            <tr class="fs-18px">
+                                                <th scope="col">Foto</th>
+                                                <th scope="col">ID</th>
+                                                <th scope="col">Usuario</th>
+                                                <th scope="col">Fecha de registro</th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody >
+                                            <tr th:each = "admin : ${listaAdmins}" class="mi-celda">
+                                                <td width="60"><img class="img-circular" th:src="@{'/images/' + ${admin.foto}}" th:alt="*{admin.usuario}" width="50" height="50"></td>
+                                                <td th:text="${admin.id}" > </td>
+                                                <td th:text="${admin.usuario}"></td>
+                                                <td th:text="${admin.fecha_registro}"></td>
+                                                
+                                                <!--CRUD
+                                                <td class="text-center">
+                                                    <a class="btn btn-primary botonEditar"
+                                                        th:data-id="${admin.id}"
+                                                        th:data-usuario ="${admin.usuario}">
+                                                        <i class="fa-solid fa-newspaper"></i> 
+                                                        Editar
+                                                    </a>
+                                                </td>
+                                                <td class="text-center">
+                                                    <a class="btn btn-danger" th:href="@{/categorias/eliminar/} + ${datos.id}" onclick="return confirm('¿Desea eliminar la cactegoria?')">   
+                                                        <i class="fa-solid fa-delete-left"></i> 
+                                                        Eliminar
+                                                    </a>
+                                                </td>
+                                                -->
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!--MODAL UPDATE
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            Launch demo modal
+                        </button>
+                        -->
+                        <!-- Modal
+                        <div class="modal fade" id="editarModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Categiría</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <form th:action = "@{/categorias/guardar}" th:object="${categoria}" method="post">
+                                        <div class="modal-body">
+                                            <input type="hidden" name='id' id="id">
+                                            <div class="row">
+                                                <div class="text-center">
+                                                </div>
+                                                <div class="col-12 mb-3">
+                                                    <label>Nombre:</label>
+                                                    <input type="text" name="nombre" id="txtNombre" class="form-control" placeholder="Ingresar el nombre">
+                                                </div>
+                                                <div class="col-12 mb-3">
+                                                    <label>Descripción:</label>
+                                                    <input type="text" name="descripcion" id="txtDescripcion" class="form-control" placeholder="Ingresar la descripcion">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                                <i class="fa-solid fa-ban"></i> Cancelar
+                                            </button>
+                                            <button type="submit" class="btn btn-primary">
+                                                <i class="fa-solid fa-floppy-disk"></i> Guardar Campos
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        -->
+                    </div>
+                </main>
+                <footer th:replace="admin/index :: fFooter"></footer>
+            </div>
+        </div>
+        <div th:replace="admin/index :: fLibrerias"></div>
+        <script th:src="@{/js/libreriaAdministrador.js}"></script>
+    </body>
+</html>

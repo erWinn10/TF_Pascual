@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head th:replace="admin/index :: fCabecera"></head>
+    <body class="sb-nav-fixed ">
+        <nav th:replace="admin/index :: fBarra"></nav>
+        <div id="layoutSidenav">
+            <div th:replace="admin/index :: fMenu"></div>
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container mt-5 pt-4">
+                        <form class="mb-4" th:action="@{/articulo/guardar}" th:object="${articulo}" method="post">
+                            <div class="card qik">
+                                <div class="card-header fs-20px">
+                                    <i class="fa-solid fa-floppy-disk"></i>
+                                    Registrar Articulo:
+                                </div>
+                                <div class="card-body fs-18px">
+                                    <div class="row">
+                                        <div class="col-md-6 mb-2">
+                                            <label>Colección</label>    
+                                            <select class="form-select roboto" th:field="*{coleccion.id}" required>
+                                                <option class="black" value="" >Seleccione una Colección</option>
+                                                <option th:each="coleccion : ${listaColecciones}"  
+                                                        th:value="${coleccion.id}"
+                                                        th:text="${coleccion.nombre}">
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="col-md-6 mb-2 ">
+                                            <label>Nombre de Artículo:</label>
+                                            <input th:field="*{nombre}" type="text" class="form-control" required/>
+                                        </div>
+                                        <div class="col-md-6 mb-2">
+                                            <label>Precio del Artículo:</label>
+                                            <input th:field="*{precio}" type="number" class="form-control" required/>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="mb-2">
+                                            <label>Ruta de la imagen del artículo:</label>
+                                            <input th:field="*{imagen}" type="file" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="row">  
+                                        <div class="col-12 text-center mt-4">
+                                            <button type="submit" class="btn btn-light p-2  verdebb">
+                                                
+                                                <div class="p-1"><i class="fa-solid fa-floppy-disk"></i> <strong>Guardar Artículo</strong></div>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        
+                        <!--TABLA-->
+                        <br>
+                        <div class="card qik">
+                            <div class="card-header fs-20px">
+                                <i class="fa-solid fa-table"></i> 
+                                Categorías Registradas
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover">
+                                        <thead>
+                                            <tr class="fs-18px">
+                                                <th scope="col">ID</th>
+                                                <th scope="col">Colección</th>
+                                                <th scope="col">Nombre</th>
+                                                <th scope="col">Precio</th>
+                                                <th scope="col">Fecha Registro</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr th:each = "artiCulo : ${listaArticulos}" class="mi-celda">
+                                                <td th:text="${artiCulo.id}"></td>
+                                                <td th:text="${artiCulo.coleccion.nombre}"></td>
+                                                <td th:text="${artiCulo.nombre}"></td>
+                                                <td th:text="${artiCulo.precio}"></td>
+                                                <td th:text="${artiCulo.fecha_registro}"></td>
+                                                
+                                                <td class="text-center">
+                                                    <a class="btn btn-danger rojobb" th:href="@{/articulo/eliminar/} + ${artiCulo.id}" onclick="return confirm('¿Desea eliminar la cactegoria?')">   
+                                                        <i class="fa-solid fa-delete-left"></i> 
+                                                        <strong>Eliminar</strong>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    
+                </main>
+                <footer th:replace="admin/index :: fFooter"></footer>
+            </div>
+        </div>
+        <div th:replace="admin/index :: fLibrerias"></div>
+        <script th:src="@{/js/libreriaArticulo.js}"></script>
+    </body>
+</html>

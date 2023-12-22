@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head th:fragment="fCabecera">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" th:href="@{/images/logo.ico}">
+    <link th:href="@{/css/styles.css}" rel="stylesheet"/>
+    <link th:href="@{/css/stylesb.css}" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@10..48,300;10..48,600&family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Cocobolo & Cocobaby</title>
+</head>
+<body>
+    <div th:fragment="fBarraTop" class="barra">ENVÍOS GRATIS A TODO EL PERÚ</div>
+    <header class="sticky" th:fragment="fHeader">
+        <div class="barramovil">
+            <nav class=" py-4 px-2 ms-4 me-2 list-unstyled d-flex justify-content-between align-items-center">
+                <div class="d-flex flex-grow-0" style="flex-basis: 0;">
+                    <a class="coco" th:href="@{/inicio/}">
+                        <img th:src="@{/images/coco7.png}" alt="Cocobolo" width="240" height="100">
+                    </a>
+                </div>
+                <form class="d-flex buscador" role="search">
+                    <input class=" border-0 me-0 barra2" id="buscador" maxlength="128" role="combobox" type="search" placeholder="¿Qué estas buscando?..." aria-label="Search">
+                    <button class="border-0 p-0 m-0 b-0"onclick="buscar()" type="submit"><img th:src="@{/images/lupa2.png}" width="32" height="32"></button>
+                </form>
+                <div class="d-flex flex-grow-0 justify-content-end">
+
+                    <div>
+                        <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link " id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fs-35px fas fa-user fa-regular" style="color: #8cc0ea";></i></a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" th:href="@{/admin/}">Administracion</a></li>
+                                </ul>
+                            </li>
+                        </ul>   
+                    </div>
+
+
+                    <button class="btn btn-black" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i class="fa-solid fs-35px fa-basket-shopping" style="color: #8cc0ea;"></i></i></i></button>
+                    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+                        <div class="mochi offcanvas-header">
+                          <h5 class=" offcanvas-title" id="offcanvasRightLabel"><i class=" fa-solid fa-bag-shopping" style="color: #56bce6;"></i><span class="carri">Mi carrito</span></h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                        </div>
+                        <div class="offcanvas-body">
+                          ...
+                        </div>
+                    </div>
+                </div>
+            </nav>
+    
+            <nav>
+              <ul class="gap-5 nav list-unstyled justify-content-center align-items-center d-flex barrabaja" >
+                <li class="nav-item" th:each="colec:${listaColecciones}">
+                    <a class="nav-link d-flex justify-content-center text-dark font-weight-medium px-5 py-2" th:href="@{'/inicio/' + ${colec.nombre}}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="${colec.nombre}">
+                    </a>
+                </li>
+                    <!--
+                    <li class="nav-item">
+                        <a class="nav-link d-flex justify-content-center text-dark font-weight-medium px-5 py-2" th:href="@{/inicio/bebitas}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Bebitas
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex justify-content-center text-dark font-weight-medium px-5 py-2" th:href="@{/inicio/accesorios}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Accesorios
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex justify-content-center text-dark font-weight-medium px-5 py-2" th:href="@{/inicio/extras}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Extras
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex justify-content-center text-dark font-weight-medium px-5 py-2" th:href="@{/inicio/juguetes}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Juguetes
+                        </a>
+                    </li>
+                    -->
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div id="carouselExampleCaptions" class="carousel slide " data-bs-ride="carouse">
+            <div class="carousel-indicators">
+              <button type="button"  data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+              <!--<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>-->
+            </div>
+            <div class="carousel-inner">
+              <div class="carousel-item altoImagen active" data-bs-interval="5000">
+                <img th:src="@{/images/portada1.5.png}" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item altoImagen" data-bs-interval="5000">
+                <img th:src="@{/images/portada2.3.png}" class="altoImagen d-block w-100" alt="...">
+              </div>
+              <!--<div class="carousel-item altoImagen" data-bs-interval="1000">
+                <img src="imagenes/bg_3.jpg" class="altoImagen w-100" alt="...">
+              </div>-->
+            </div>
+            <!--<button class="carousel-control-prev " type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon " aria-hidden="true"></span>
+              <span class="visually-hidden ">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>-->
+        </div>
+        <section>
+            <header class="border-bottom  fs-35px coral ps-5 mt-3 ps-2">
+                <strong>Sets de Cunas</strong>
+            </header>
+            <article>
+                <div class="container-fluid justify-content-between d-flex ">
+                    <a th:href="@{/inicio/Bebitos}" class="nosub"><div class="card text-cart" >
+                        <span class="borde"><img th:src="@{/images/LeonTV.jpg}" class=" card-img-top altoImagen2" alt="..."></span>
+                        <div class="card-body ">
+                          <p class="card-text letras">Niños</p>
+                        </div>
+                      </div>  </a>
+                    
+                    <a th:href="@{/inicio/Bebitas}" class="nosub"><div class="card text-cart" >
+                      <span class="borde"><img th:src="@{/images/faraonrosadobb.png}" class="card-img-top altoImagen2" alt="..."></span>
+                      <div class="card-body ">
+                        <p class="card-text letras">Niñas</p>
+                      </div>
+                    </div> </a>
+                    <a th:href="@{/inicio/Extras}" class="nosub"><div class="card text-cart" >
+                      <span class="borde"><img th:src="@{/images/portacarro.png}" class="card-img-top altoImagen2" alt="..."></span>
+                      <div class="card-body ">
+                        <p class="card-text letras">Extras</p>
+                      </div>
+                    </div>  </a>
+                  </div>
+            </article>
+        </section>
+            
+    </main>
+    <footer th:fragment="fFooter">
+        <div class="container-fluid josefin">
+            <div class="row">
+              <div class="col-7 text-white pt-2 celestebb letrassubs justify-content-center">
+                  <h2> <p> </p></h2>
+                  <p class="fs-50px">¡Suscríbete a la página!</p>
+                  <h4>Suscríbete para recibir promociones exclusivas y las últimas novedades</h4>
+              </div>
+              
+              <div class="col-5 p-4">
+                <form class="mb-2" th:action="@{/inicio/guardar-correo}" th:object="${correo}" method="post">
+                  <div class="mb-3">
+                      <label>Ingrese Email: </label>
+                      <input th:field="*{direccion}" type="email" class="form-control" aria-describedby="emailHelp" required/>
+                  </div>
+                  <button type="submit" class="btn celestebb">
+                    <i class="fa-solid fa-floppy-disk"></i>
+                    REGISTRARSE
+                  </button>
+                </form>
+              </div>
+              
+            </div>
+          </div>
+        
+        
+          <div class="container-fluid josefin celestebb2">
+            <div class="row pt-4 pb-1">
+              <div class="col-3 ">
+                <p>
+                    <span class="icono padding20">
+                      <i class="fa-solid fa-phone"></i>
+                    </span>
+                    <span class="padding25"> (+51) 903 006 662</span><br><br>
+                    <span class="padding65"> (+51) 997 568 107</span><br><br>
+                    <span class="padding65"> (+51) 902 626 397</span>
+                  </p>
+              </div>
+              <div class="col-3">
+                <p>
+                  <span class="icono">
+                    <i class="fa-solid fa-location-crosshairs"></i>
+                  </span>
+                  <span class="padding25"> Jr. Antonio Bazo 000</span>
+                </p>
+                <p class="oscuro padding45">La Victoria 15018<br>Lima,<br>Lima, Perú</p>
+              </div>
+              <div class="col-3">
+                <p>
+                  <span class="icono">
+                    <i class="fa-regular fa-clock"></i>
+                  </span>
+                  <span class="padding25"> 
+                    Solo pedidos en línea
+                  </span>
+                </p>
+                <p class="oscuro padding45"s>00:00am - 11:59pm</p>
+              </div>
+        
+              <div class="col-3 barrajabaja">
+                <h4 class="tituloReservar padding65 pb-2 ">Redes Sociales</h4>
+                <div class="separa">
+                  <h4><a href="https://www.facebook.com/cocoboloycocobaby/" target="_blank"><i class="fa-brands fa-facebook"></i></a></h4>
+                  <h4><a href="https://www.instagram.com/cocobolococobaby/" style="color:#E1306C;" target="_blank"><i class="fa-brands fa-instagram"></i></a></h4>
+                  <h4><a href="https://www.youtube.com/channel/UCW8doKsLaEhEBECjiIUyVFw" style="color:#FF0000;" target="_blank"><i class="fa-brands fa-youtube"></i></a></h4>
+                  <h4><a href="https://www.tiktok.com" style="color: black; " target="_blank"><i class="fa-brands fa-tiktok"></i></a></h4>
+                  <h4><a href="https://wa.me/51903006662?text=Hola%2C+deseo+personalizar+mi+pedido." style="color: #25D366;" target="_blank"><i class="fa-brands fa-whatsapp"></i></a></h4>
+                </div>
+              </div>
+            </div>
+          </div>
+    </footer>
+    
+    
+
+    <div th:fragment="fLibrerias">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+        
+      </div>
+</body>
+</html>

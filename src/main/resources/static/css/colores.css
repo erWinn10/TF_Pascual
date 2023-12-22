@@ -1,0 +1,16 @@
+body{
+    background-color: #FAF4F4 !important;
+}
+
+.form-control{
+    font-family: 'Roboto' !important;
+}
+
+select option:hover{
+    background-color: white !important;
+}
+
+.mi-celda {
+    
+    vertical-align: middle;
+}
